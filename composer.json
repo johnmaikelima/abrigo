@@ -1,0 +1,13 @@
+{
+    "name": "ims/website",
+    "description": "IMS Manutenção Industrial - Website",
+    "type": "project",
+    "require": {
+        "php": ">=8.3"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3"
+        }
+    }
+}

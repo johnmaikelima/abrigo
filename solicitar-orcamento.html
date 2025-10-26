@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solicite um orçamento personalizado para manutenção industrial. Atendimento rápido e profissional.">
+    <meta name="keywords" content="orçamento manutenção industrial, solicitar orçamento, contato ims">
+    <title>Solicitar Orçamento - IMS Manutenção Industrial</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .grid {
+            display: grid;
+        }
+        
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        
+        .gap-12 {
+            gap: 3rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:col-span-1 {
+                grid-column: span 1 / span 1;
+            }
+            
+            .lg\:col-span-2 {
+                grid-column: span 2 / span 2;
+            }
+            
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue-600);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.125rem;
+        }
+        
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+        
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .space-y-8 > * + * {
+            margin-top: 2rem;
+        }
+        
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .items-start {
+            align-items: flex-start;
+        }
+        
+        .flex-shrink-0 {
+            flex-shrink: 0;
+        }
+        
+        .ml-4 {
+            margin-left: 1rem;
+        }
+        
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+        
+        .mt-8 {
+            margin-top: 2rem;
+        }
+        
+        .pt-6 {
+            padding-top: 1.5rem;
+        }
+        
+        .border-t {
+            border-top-width: 1px;
+        }
+        
+        .border-gray-200 {
+            border-color: #e5e7eb;
+        }
+        
+        .bg-blue-100 {
+            background-color: #dbeafe;
+        }
+        
+        .bg-green-100 {
+            background-color: #d1fae5;
+        }
+        
+        .bg-purple-100 {
+            background-color: #e9d5ff;
+        }
+        
+        .bg-amber-100 {
+            background-color: #fef3c7;
+        }
+        
+        .bg-blue-50 {
+            background-color: #eff6ff;
+        }
+        
+        .p-3 {
+            padding: 0.75rem;
+        }
+        
+        .p-8 {
+            padding: 2rem;
+        }
+        
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+        
+        .text-lg {
+            font-size: 1.125rem;
+        }
+        
+        .font-medium {
+            font-weight: 500;
+        }
+        
+        .font-bold {
+            font-weight: 700;
+        }
+        
+        .text-gray-900 {
+            color: #111827;
+        }
+        
+        .text-gray-600 {
+            color: #4b5563;
+        }
+        
+        .text-blue-600 {
+            color: #2563eb;
+        }
+        
+        .text-green-600 {
+            color: #16a34a;
+        }
+        
+        .text-green-500 {
+            color: #22c55e;
+        }
+        
+        .hover\:text-blue-700:hover {
+            color: #1d4ed8;
+        }
+        
+        .hover\:text-green-700:hover {
+            color: #15803d;
+        }
+        
+        .hover\:text-gray-900:hover {
+            color: #111827;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .h-full {
+            height: 100%;
+        }
+        
+        .hero-orcamento {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            padding: 5rem 0;
+        }
+        
+        .text-white {
+            color: white !important;
+        }
+        
+        .text-4xl {
+            font-size: 2.25rem;
+        }
+        
+        .text-xl {
+            font-size: 1.25rem;
+        }
+        
+        .max-w-3xl {
+            max-width: 48rem;
+        }
+        
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .md\:text-5xl {
+                font-size: 3rem;
+            }
+            
+            .md\:text-2xl {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header"></header>
+
+    <!-- Hero Section -->
+    <section class="hero-orcamento">
+        <div class="container text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white">Solicite um Orçamento</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto text-white">
+                Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16">
+        <div class="container">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Contact Information -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Informações de Contato</h2>
+                        
+                        <div class="space-y-8">
+                            <!-- Email -->
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full flex-shrink-0">
+                                    <span class="text-2xl">📧</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">E-mail</h3>
+                                    <a href="mailto:orcamento@imsmanutencao.com.br" class="text-blue-600 hover:text-blue-700">
+                                        orcamento@imsmanutencao.com.br
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full flex-shrink-0">
+                                    <span class="text-2xl">💬</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">WhatsApp</h3>
+                                    <a href="https://wa.me/5511991248868?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       class="text-green-600 hover:text-green-700">
+                                        Enviar mensagem
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full flex-shrink-0">
+                                    <span class="text-2xl">📱</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Telefone</h3>
+                                    <a href="tel:11991248868" class="text-gray-600 hover:text-gray-900">
+                                        (11) 99124-8868
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full flex-shrink-0">
+                                    <span class="text-2xl">📍</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Endereço</h3>
+                                    <p class="text-gray-600">Guarulhos – São Paulo</p>
+                                </div>
+                            </div>
+
+                            <!-- Business Hours -->
+                            <div class="flex items-start">
+                                <div class="bg-blue-50 p-3 rounded-full flex-shrink-0">
+                                    <span class="text-2xl">🕐</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Horário de Atendimento</h3>
+                                    <p class="text-gray-600">
+                                        Segunda a Sexta: 08:00 - 18:00<br>
+                                        Sábado: 08:00 - 12:00<br>
+                                        Domingo: Fechado
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Por que nos escolher?</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-600">Atendimento personalizado</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-600">Orçamento sem compromisso</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-600">Equipe técnica especializada</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Preencha o Formulário</h2>
+                        <p class="text-gray-600 mb-8">
+                            Preencha os campos abaixo com suas informações e detalhes do serviço desejado. 
+                            Nossa equipe entrará em contato o mais breve possível.
+                        </p>
+                        
+                        <form id="orcamentoForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empresa">Empresa <span class="required">*</span></label>
+                        <input type="text" id="empresa" name="empresa" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone <span class="required">*</span></label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico">Tipo de Serviço <span class="required">*</span></label>
+                        <select id="servico" name="servico" required>
+                            <option value="">Selecione um serviço</option>
+                            <option value="eletrica">Manutenção Elétrica Industrial</option>
+                            <option value="mecanica">Manutenção Mecânica Industrial</option>
+                            <option value="hidraulica">Manutenção Hidráulica e Pneumática</option>
+                            <option value="integridade">Integridade Estrutural</option>
+                            <option value="montagem">Montagem de Equipamentos</option>
+                            <option value="geradores">Manutenção de Geradores</option>
+                            <option value="paineis">Montagem de Painéis Elétricos</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem / Descrição do Serviço <span class="required">*</span></label>
+                        <textarea id="mensagem" name="mensagem" required placeholder="Descreva detalhadamente o serviço que você precisa..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-yellow btn-submit">Enviar Solicitação</button>
+                </form>
+
+                        <div id="successMessage" style="display: none; margin-top: 1rem; padding: 1rem; background: #d1fae5; color: #065f46; border-radius: 0.375rem;">
+                            <strong>Sucesso!</strong> Sua solicitação foi enviada. Entraremos em contato em breve.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="py-16 bg-gray-50">
+        <div class="container">
+            <h2 class="text-center mb-12">Outras Formas de Contato</h2>
+            <div class="services-grid">
+                <div class="service-card text-center">
+                    <div class="service-icon">📧</div>
+                    <h3>E-mail</h3>
+                    <p><a href="mailto:orcamento@imsmanutencao.com.br" class="text-blue-600 hover:text-blue-700">orcamento@imsmanutencao.com.br</a></p>
+                </div>
+                <div class="service-card text-center">
+                    <div class="service-icon">📱</div>
+                    <h3>Telefone</h3>
+                    <p><a href="tel:11991248868" class="text-gray-700 hover:text-blue-600">(11) 99124-8868</a></p>
+                </div>
+                <div class="service-card text-center">
+                    <div class="service-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/5511991248868?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-700">(11) 99124-8868</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <script src="js/main.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS com sua Public Key
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // VOCÊ PRECISA SUBSTITUIR ISSO
+        })();
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Desabilitar botão de envio
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            // Mapear serviços
+            const servicos = {
+                'eletrica': 'Manutenção Elétrica Industrial',
+                'mecanica': 'Manutenção Mecânica Industrial',
+                'hidraulica': 'Manutenção Hidráulica e Pneumática',
+                'integridade': 'Integridade Estrutural',
+                'montagem': 'Montagem de Equipamentos',
+                'geradores': 'Manutenção de Geradores',
+                'paineis': 'Montagem de Painéis Elétricos',
+                'outro': 'Outro'
+            };
+            
+            // Preparar dados para o EmailJS
+            const templateParams = {
+                nome: data.nome,
+                empresa: data.empresa,
+                email: data.email,
+                telefone: data.telefone,
+                servico: servicos[data.servico] || data.servico,
+                cidade: data.cidade || 'Não informado',
+                mensagem: data.mensagem,
+                data_envio: new Date().toLocaleString('pt-BR')
+            };
+            
+            // Enviar email usando EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Mostrar mensagem de sucesso
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('successMessage').innerHTML = '<strong>Sucesso!</strong> Orçamento enviado com sucesso! Entraremos em contato em breve.';
+                    event.target.reset();
+                    
+                    // Scroll para a mensagem
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Reabilitar botão
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Mostrar mensagem de erro com opção de WhatsApp
+                    const whatsappLink = 'https://wa.me/5511991248868?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento';
+                    
+                    if (confirm('Erro ao enviar formulário. Deseja abrir o WhatsApp para contato direto?')) {
+                        window.open(whatsappLink, '_blank');
+                    }
+                    
+                    // Reabilitar botão
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
+        }
+    </script>
+</body>
+</html>

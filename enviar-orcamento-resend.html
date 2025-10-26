@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Resend</title>
+</head>
+<body>
+    <h1>Teste de Envio de Email</h1>
+    <button onclick="testarEmail()">Enviar Email de Teste</button>
+    <div id="resultado"></div>
+
+    <script>
+        async function testarEmail() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = 'Enviando...';
+            
+            try {
+                const response = await fetch('https://api.resend.com/emails', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer re_123456789', // VOCÊ PRECISA CRIAR UMA CONTA NO RESEND
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: 'IMS Manutenção <onboarding@resend.dev>',
+                        to: ['johnpatrocinio1@gmail.com'],
+                        subject: 'Teste de Email - IMS',
+                        html: '<h1>Teste funcionando!</h1>'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultado.innerHTML = '✅ Email enviado com sucesso!';
+                } else {
+                    resultado.innerHTML = '❌ Erro: ' + JSON.stringify(data);
+                }
+            } catch (error) {
+                resultado.innerHTML = '❌ Erro: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
